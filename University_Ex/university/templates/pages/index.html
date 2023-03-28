@@ -1,0 +1,85 @@
+{% extends 'bases/base.html' %}
+{% block content %}
+<!-- hero section -->
+
+<section id="home" class="py-5">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+              <h1 class="display-4">Exam Supervision Management</h1>
+              <p class="lead">Efficiently assign teachers to exam rooms with ease</p>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <img src="media/image/exam.jpg" class="img-fluid" alt="Exam Supervision Image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end hero section -->
+  
+      <!--teachers section-->
+        <section id="teacher" class="py-5 bg-light">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h2>Our Teachers</h2>
+                <p class="lead">Our experienced and highly qualified teachers are committed to providing the best possible exam supervision experience for our students.</p>
+                <p>Each teacher goes through a rigorous selection process and is trained to ensure they are equipped with the skills necessary for successful exam supervision.</p>
+                <p>Our teachers are also required to regularly update their knowledge and skills to ensure they are up-to-date with the latest exam supervision practices and policies.</p>
+                <a href="{% url 'login' %}" class="btn">Learn More</a>
+              </div>
+              <div class="col-md-6">
+                <img src="media/image/teacher.webp" class="img-fluid" alt="Teachers Image">
+              </div>
+            </div>
+          </div>
+        </section>
+            <!--end teachers section-->
+          <!--rooms section-->
+          <section id="rooms" class="bg-light py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 mx-auto text-center order-md-1">
+                  <h2 class="mb-3">Exam Rooms</h2>
+                  <p class="lead">View the available exam rooms and their capacities.</p>
+                </div>
+                <div class="col-md-8 col-lg-6 order-md-2">
+                  <section id="rooms-section">
+                    <h3 class="mb-4">Exam Rooms:</h3>
+                    <ul class="list-group mb-4">
+                      <li class="list-group-item">Smith Hall: 50 capacity</li>
+                      <li class="list-group-item">Johnson Hall: 30 capacity</li>
+                      <li class="list-group-item">Brown Hall: 40 capacity</li>
+                    </ul>
+                    <a href="Rooms.html" class="btn">View More Rooms</a>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          
+           <!-- end rooms section -->
+  <!-- Assignment Section -->
+  <section id="assignments">
+    <div class="container">
+      <h2 class="section-heading">Assignments</h2>
+      <p class="section-description">
+        The "Assignments" section is where you can view and manage the assignments of teachers
+         to exam rooms. Each row of the table displays the teacher's name, 
+         the assigned room number, and the time of the exam. You can easily add a new 
+         assignment by clicking on the "Add Assignment" button. This section allows you 
+         to keep track of all exam assignments in one place, ensuring that all teachers 
+         are properly assigned to their respective rooms and times.
+      </p>
+      <button class="btn">view the assignment</button>
+    </div>
+  </section>
+  <!--end assignment section-->
+
+  {% endblock content %}

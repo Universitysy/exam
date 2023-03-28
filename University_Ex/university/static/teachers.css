@@ -1,0 +1,11 @@
+btn-primary,
+.btn-secondary {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
