@@ -19,12 +19,10 @@ section {
   align-items: center;
 }
 
-section.side {
-  background: url(image/teacher-page.jpg) no-repeat;
-  background-size: 100% 102%;
-}
+
 
 .side img {
+  background-size: 100% 102%;
   width: 50%;
   max-width: 50%;
 }
