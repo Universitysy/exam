@@ -1,56 +1,92 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% extends 'bases/base.html' %}
+{% block content %}
+
+
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!--navbar-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-e3NqruIVGZvsYgeixJ+k1r8rIJ7fsaTJdxtTfVW63s8m+7VhJNLwkFGY7CJXd9S6" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<style>
+		/* Set the background color of the body to black */
+		body {
+			background-color: white;
+		}
+		
+		/* Set the color of the text to white */
+		.form-control, label {
+		
+		}
+		/* Style the h1 element */
+h1 {
+  position: relative;
+ align:center
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+}
+		/* Set the width of the photo side */
+		.photo-side {
+			width: 40%;
+			height: 100vh;
+			background-image: url("https://i.pinimg.com/564x/31/ab/db/31abdb6c72d143af8895c7545fa5299a.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		/* Set the width of the form side */
+		.form-side {
+			width: 70%;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		/* Center the form */
+		.form-container {
+			max-width: 400px;
+		}
+.btn{
+ background-color:white;
+  border-color:black;
+}
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+  .photo-side, .form-side {
+    width: 100%;
+    height: 50vh;
+  }
+}
 
-  <link rel="stylesheet" href="{% static 'form.css ' %}">
-	
+	</style>
 </head>
-<body>
-<section class="side">
-    <img src="/media/image/teacher-page.jpg">
- </section>
-        
-        <section class="main">
-          <a href="index.html"class="btn btn-outline-dark exit-button"> &#10005;</a> 
-            <div class="login-container">
-                <p class="title">Proctoring Coordinator</p>
-                <div class="separator"></div>
-                <p class="welcome-message">Welcome to the exam supervision management page.  Please enter the necessary details below to facilitate the assignment of teachers
-                during exam supervision at the university
-                </p>
-    
-                <form method="POST" class="login-form" novalidate>
-                 {% csrf_token %}
-                    <div class="form-control">
-                        <input type="email" placeholder="Email" name="email">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="form-control">
-                        <input type="password" placeholder="Password" name="password">
-                        <i class="fas fa-lock"></i> 
-                    </div>
-                    <button type="submit" class="btn">login</button>
-            </form>
 
-            <div> {{ email }}</div>
-            <div> {{ password }}</div>
-             
-            </div> 
-            <div>{{ error }}</div>
-            <div> {{ fuck }} </div>
-        </section>
-       
- 
-    </body>
-    </html>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 photo-side"></div>
+			<div class="col-md-6 form-side">
+				<div class="form-container">
+					<h1>Login</h1>
+					<form>
+						<div class="form-group">
+							<label for="username">Username:</label>
+							<input type="text" class="form-control" id="username" name="username">
+						</div>
+						<div class="form-group">
+							<label for="password">Password:</label>
+							<input type="password" class="form-control" id="password" name="password">
+						</div>
+						<button type="submit" class="btn">Login</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	{% endblock content %}

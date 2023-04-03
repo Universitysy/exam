@@ -1,0 +1,45 @@
+{% extends 'bases/base.html' %}
+{% block content %}
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Teacher Name</th>
+        <th scope="col">Class</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Room Number</th>
+        <th scope="col">Day</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Smith</td>
+        <td>12A</td>
+        <td>Math</td>
+        <td>101</td>
+        <td>Monday</td>
+        <td>9:00am - 10:00am</td>
+      </tr>
+      <tr>
+        <td>Jane Doe</td>
+        <td>9B</td>
+        <td>English</td>
+        <td>102</td>
+        <td>Wednesday</td>
+        <td>1:00pm - 2:00pm</td>
+      </tr>
+      <tr>
+        <td>Bob Johnson</td>
+        <td>10C</td>
+        <td>Science</td>
+        <td>103</td>
+        <td>Friday</td>
+        <td>10:00am - 11:00am</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <button type="button" class="btn btn-primary">Generate Report</button>
+  {% endblock content %}

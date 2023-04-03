@@ -1,0 +1,144 @@
+{% extends 'bases/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.carousel').carousel();
+    });
+  </script>  
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">teacher</a>
+      </li>
+    </ul>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary active" id="section1-btn">Teacher Availability</button>
+      <button type="button" class="btn btn-primary" id="section2-btn">Teacher Exchange</button>
+    </div>
+  </div>
+</nav>
+<div id="section1">
+  <h2>Teacher Availability</h2>
+  <!-- Teacher availability content goes here -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Time of Exam</th>
+        <th>Name of Exam</th>
+        <th>Name of Teacher</th>
+        <th>Check Box</th>
+        <th>Days</th>
+        <th>Exchange</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>9:00 AM</td>
+        <td>Math Exam</td>
+        <td>John Doe</td>
+        <td><input type="checkbox"></td>
+        <td>Monday, Wednesday, Friday</td>
+        <td><button type="button" class="btn btn-primary">Exchange</button></td>
+      </tr>
+      <tr>
+        <td>1:00 PM</td>
+        <td>Science Exam</td>
+        <td>Jane Smith</td>
+        <td><input type="checkbox"></td>
+        <td>Tuesday, Thursday</td>
+        <td><button type="button" class="btn btn-primary">Exchange</button></td>
+      </tr>
+      <!-- add more rows as needed -->
+    </tbody>
+  </table>
+</div>
+<div id="section2" style="display: none;">
+  <!-- Teacher exchange content goes here -->
+ 
+
+  <h2>Teacher Exchange for Exams</h2>
+  <p>Our teacher exchange program for exams allows teachers to swap positions for a specified period of time. This can
+    be a great opportunity to gain new experiences and learn new teaching techniques in a different environment.</p>
+  <p>If you're interested in participating in our teacher exchange program for exams, please fill out the application
+    form below:</p>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone number</label>
+      <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+    </div>
+    <div class="form-group">
+      <label for="current-school">Current School</label>
+      <input type="text" class="form-control" id="current-school" placeholder="Enter your current school">
+    </div>
+    <div class="form-group">
+      <label for="current-position">Current Position</label>
+      <input type="text" class="form-control" id="current-position" placeholder="Enter your current position">
+    </div>
+    <div class="form-group">
+      <label for="preferred-exchange-location">Preferred Exchange Location</label>
+      <input type="text" class="form-control" id="preferred-exchange-location"
+        placeholder="Enter your preferred exchange location">
+    </div>
+    <div class="form-group">
+      <label for="preferred-exchange-period">Preferred Exchange Period</label>
+      <input type="text" class="form-control" id="preferred-exchange-period"
+        placeholder="Enter your preferred exchange period">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+<script>
+  $(document).ready(function () {
+    // Show the first section by default
+    const section1 = document.getElementById("section1");
+    section1.style.display = "block";
+
+    // Toggle the sections when the buttons are clicked
+    const section1Btn = document.getElementById("section1-btn");
+    const section2Btn = document.getElementById("section2-btn");
+    const section1Div = document.getElementById("section1");
+    const section2Div = document.getElementById("section2");
+
+    section1Btn.addEventListener("click", function () {
+      section1Div.style.display = "block";
+      section2Div.style.display = "none";
+      section1Btn.classList.add("active");
+      section2Btn.classList.remove("active");
+    });
+
+    section2Btn.addEventListener("click", function () {
+      section1Div.style.display = "none";
+      section2Div.style.display = "block";
+      section1Btn.classList.remove("active");
+      section2Btn.classList.add("active");
+    });
+  });
+</script>
+
+    
+      
+          {% endblock content %}
