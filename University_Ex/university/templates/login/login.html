@@ -30,20 +30,27 @@
                 during exam supervision at the university
                 </p>
     
-                <form class="login-form">
+                <form method="POST" class="login-form" novalidate>
+                 {% csrf_token %}
                     <div class="form-control">
-                        <input type="text" placeholder="Username">
+                        <input type="email" placeholder="Email" name="email">
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="form-control">
-                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Password" name="password">
                         <i class="fas fa-lock"></i> 
                     </div>
-                   
+                    <button type="submit" class="btn">login</button>
             </form>
-             <a href="teachers.html" class="btn">login</a>
+
+            <div> {{ email }}</div>
+            <div> {{ password }}</div>
+             
             </div> 
+            <div>{{ error }}</div>
+            <div> {{ fuck }} </div>
         </section>
+       
  
     </body>
     </html>

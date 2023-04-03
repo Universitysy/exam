@@ -4,105 +4,57 @@ from datetime import datetime
 from django.contrib.auth.models import User, Group
 
 
-class StudentManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, role=None, **extra_fields):
         if not email:
-            raise ValueError('Students must have an email address')
-        student = self.model(email=self.normalize_email(email), **kwargs)
-        student.set_password(password)
-        student.save()
-        return student
-    
-class Student(AbstractBaseUser, PermissionsMixin):
+            raise ValueError('Email is required')
+        email = self.normalize_email(email)
+        user = self.model(email=email, role=role, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_student(self, email, password=None, **extra_fields):
+        return self.create_user(email, password=password, role='student', **extra_fields)
+
+    def create_teacher(self, email, password=None, **extra_fields):
+        return self.create_user(email, password=password, role='teacher', **extra_fields)
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, role='admin', **extra_fields)
+
+    def get_by_natural_key(self, email):
+        return self.get(email=email)
+
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name= 'student_group',
-        blank=True,
-        help_text= 
-            'The groups this user belongs to. A student will get all permissions '
-            'granted to each of their groups.'
-        ,
-        related_name='students'
-        )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        blank=True,
-        related_name="student_user_permissions",
-        verbose_name='student permissions',
-        help_text='Specific permissions for this user.',
-    )
-    objects = StudentManager()
+    is_active = models.BooleanField(default=True)
+    role = models.CharField(max_length=10, choices=(('student', 'Student'), ('teacher', 'Teacher'), ('admin', 'Admin')), default='student')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    def __str__(self):
-        return self.email
-
-    def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
-
-    def get_short_name(self):
-        return self.first_name
-
-
-class TeacherManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
-        if not email:
-            raise ValueError('Teachers must have an email address')
-        teacher = self.model(email=self.normalize_email(email), **kwargs)
-        teacher.set_password(password)
-        teacher.save()
-        return teacher
-
-    def create_superuser(self, email, password, **kwargs):
-        kwargs.setdefault('is_staff', True)
-        kwargs.setdefault('is_superuser', True)
-        return self.create_user(email, password, **kwargs)
-
-
-
-class Teacher(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name= 'teacher_group',
-        blank=True,
-        help_text= 
-            'The groups this user belongs to. A teacher will get all permissions '
-            'granted to each of their groups.'
-        ,
-        related_name='teachers'
-        )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        blank=True,
-        related_name="teacher_user_permissions",
-        verbose_name='teacher permissions',
-        help_text='Specific permissions for this teacher.',
-    )
-    objects = TeacherManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    objects = CustomUserManager()
 
     def __str__(self):
         return self.email
 
-    def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
+    @property
+    def is_student(self):
+        return self.role == 'student'
+        
+    @property
+    def is_teacher(self):
+        return self.role == 'teacher'
 
-    def get_short_name(self):
-        return self.first_name
+    @property
+    def is_admin(self):
+        return self.role == 'admin'
 
 
 
@@ -110,7 +62,7 @@ class Teacher(AbstractBaseUser, PermissionsMixin):
 class Request_t(models.Model):
     body = models.CharField(max_length=50, default=None)
     teacher_req = models.ForeignKey(
-        Teacher,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='requests',
         related_query_name='request'  # <-- this line to avoid conflict
@@ -119,6 +71,6 @@ class Request_t(models.Model):
 
 class Course(models.Model):
     name = models.CharField(max_length=50, default=None)
-    student_courses = models.ManyToManyField(Student, default=None)
+    student_courses = models.ManyToManyField(CustomUser, default=None)
     created_at = models.DateTimeField(default=datetime.now)
     updated_at = models.DateTimeField(default=datetime.now)

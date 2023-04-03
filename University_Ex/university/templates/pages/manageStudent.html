@@ -1,0 +1,16 @@
+<form method='POST'>
+
+    {% csrf_token %}
+ 
+    <div> first name :<input type="text" name="firstName"></div>
+    <div> last name :<input type="text" name="lastName"></div>
+    <div> email :<input type="email" name="email"></div>
+    
+     
+ <div> <button type="submit"> add student </div>
+ </form>
+
+ <div>
+    {{ student.is_teacher }}
+    {{ student.is_student }}
+ </div>
