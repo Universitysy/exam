@@ -1,16 +1,13 @@
 <form method='POST'>
 
    {% csrf_token %}
-
-   <div> first name :<input type="text" name="firstName"></div>
-   <div> last name :<input type="text" name="lastName"></div>
-   <div> email :<input type="email" name="email"></div>
+  
+   <div> username :<input type="text" name="username" required></div>
+   <div> first name :<input type="text" name="firstName" required></div>
+   <div> last name :<input type="text" name="lastName" required></div>
+   <div> email :<input type="email" name="email" required></div>
    
     
 <div> <button type="submit"> add teacher </div>
 </form>
-
-<div>
-   {{ teacher.is_teacher }}
-   {{ teacher.is_student }}
-</div>
+<div> {{ error }} </div>
