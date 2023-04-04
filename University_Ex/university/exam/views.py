@@ -7,6 +7,19 @@ import traceback
 from django.contrib.auth.hashers import make_password
 import secrets
 
+
+def teacher_path(request):
+    return render(request, 'pages/teachers.html')
+
+def room_path(request):
+    return render(request, 'pages/room.html')
+
+def contact_path(request):
+    return render(request, 'pages/contactUs.html')
+
+def assi_path(request):
+    return render(request, 'pages/assignment.html')
+
 def home(request):
     
     context = {

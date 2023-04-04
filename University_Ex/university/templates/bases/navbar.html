@@ -8,22 +8,22 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item me-3">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link active" href="{% url 'student_home' %}">Home</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link" href="form.html">Teachers</a>
+            <a class="nav-link" href="{% url 'teacher_path' %}">Teachers</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link" href="Rooms.html">Rooms</a>
+            <a class="nav-link" href="{% url 'room_path' %}">Rooms</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link" href="#">Assignments</a>
+            <a class="nav-link" href="{% url 'assi_path' %}">Assignments</a>
           </li>
           <li class="nav-item me-3">
             <a class="nav-link" href="#">Notifications</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link" href="contact.html">Contact Us</a>
+            <a class="nav-link" href="{% url 'contact_path' %}">Contact Us</a>
           </li>
           <li class="nav-item me-3">
             <a class="nav-link" href="{% url 'login' %}">Login</a>

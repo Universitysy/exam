@@ -71,6 +71,7 @@ class  Teacher(CustomUser):
 
 class Request_t(models.Model):
     body = models.CharField(max_length=50, default=None)
+    status = models.BooleanField(default=False)
     teacher_req = models.ForeignKey(
         Teacher,
         on_delete=models.CASCADE,
@@ -84,3 +85,21 @@ class Course(models.Model):
     student_courses = models.ManyToManyField(Student, default=None)
     created_at = models.DateTimeField(default=datetime.now)
     updated_at = models.DateTimeField(default=datetime.now)
+
+
+class Time_A(models.Model):
+      time_choices = [
+        ('8:00 --> 9:00 AM', '8:00 --> 9:00 AM'),
+        ('9:00 --> 10:00 AM', '8:00 --> 10:00 AM'),
+        ('10:00 --> 11:00 AM', '8:00 --> 11:00 AM'),
+        ('11:00 --> 12:00 PM', '8:00 --> 12:00 PM'),
+        ('12:00 --> 1:00 PM', '8:00 --> 1:00 PM'),
+        ('1:00 --> 2:00 PM', '8:00 --> 2:00 PM'),
+        ('2:00 --> 3:00 PM', '8:00 --> 3:00 PM'),
+        ('3:00 --> 4:00 PM', '8:00 --> 4:00 PM'),
+        # Add more choices as needed
+    ]
+
+      time = models.TimeField(choices=time_choices)
+
+      date = models.DateField()
