@@ -1,68 +1,130 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin, Permission
 from django.db import models
 from datetime import datetime
-from django.contrib.auth.models import User, Group
 
 
-class CustomUser(AbstractUser):
-    class Role(models.TextChoices):
-        ADMIN = "ADMIN", 'Admin'
-        STUDENT = "STUDENT", 'Student'
-        TEACHER = "TEACHER", 'Teacher'
+class UserManager(BaseUserManager):
+    def _create_user(self, username, email, password, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-    base_role = Role.ADMIN
-    
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
 
-    
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self._create_user(username, email, password, **extra_fields)
 
-    role = models.CharField(max_length=10, choices=Role.choices)
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.role = self.base_role
-            return super().save(*args, **kwargs)
+class User(AbstractUser):
+    ROLE_CHOICES = [
+        ('ADMIN', 'Admin'),
+        ('STUDENT', 'Student'),
+        ('TEACHER', 'Teacher')
+    ]
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='ADMIN')
 
-    @property
-    def get_full_name(self):
-        return self.first_name + ' ' + self.last_name
+    objects = UserManager()
+
 
 class StudentManager(BaseUserManager):
-    def get_queryset(self, *args, **kwargs):
-        results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=CustomUser.Role.STUDENT)
+    def _create_user(self, username, email, password, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
 
-class  Student(CustomUser):
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self._create_user(username, email, password, **extra_fields)
+    def get_queryset(self):
+        return super().get_queryset().filter(role='STUDENT')
+
+class Student(User):
+    objects = StudentManager()
     
-    base_role = CustomUser.Role.STUDENT
 
-    student = StudentManager()
-
-    @property
-    def get_full_name(self):
-        return super().get_full_name
-
-    
-    
     class Meta:
         proxy = True
 
 
 class TeacherManager(BaseUserManager):
-    def get_queryset(self, *args, **kwargs):
-        results = super().get_queryset(*args, **kwargs)
-        return results.filter(role=CustomUser.Role.TEACHER)
+    def _create_user(self, username, email, password, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-class  Teacher(CustomUser):
-    base_role = CustomUser.Role.TEACHER
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
 
-    teacher = TeacherManager()
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self._create_user(username, email, password, **extra_fields)
+    def get_queryset(self):
+        return super().get_queryset().filter(role='TEACHER')
 
-    def get_full_name(self):
-        return super().get_full_name
-    
+class Teacher(User):
+    objects = TeacherManager()
+
     class Meta:
         proxy = True
+
+
+class AdminManager(BaseUserManager):
+    def _create_user(self, username, email, password, **extra_fields):
+        if not username:
+            raise ValueError('The Username field must be set')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(username, email, password, **extra_fields)
+
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self._create_user(username, email, password, **extra_fields)
+    def get_queryset(self):
+        return super().get_queryset().filter(role='ADMIN')
+
+class Admin(User):
+    objects = AdminManager()
+
+    class Meta:
+        proxy = True
+
+
+
+
 
 
 

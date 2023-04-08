@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import *
 
-class CustomUserAdmin(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     class Meta:
-        model = CustomUser
+        model = User
         list_display = ['username']
 
 class StudentAdmin(admin.ModelAdmin):
@@ -17,9 +17,15 @@ class TeacherAdmin(admin.ModelAdmin):
         model = Teacher
         list_display=['username']
 
+class AdminAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Admin
+        list_display=['username']
 
-admin.site.register(CustomUser, CustomUserAdmin)
+
+admin.site.register(User, UserAdmin)
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Student, StudentAdmin)
+admin.site.register(Admin, AdminAdmin)
 
 
