@@ -1,7 +1,83 @@
 {% extends 'bases/base.html' %}
 {% block content %}
+<style>
+  /* Set the table to be responsive */
+  .container {
+    overflow-x: auto;
+  }
+  
+  /* Set the table width to 100% to fit the container */
+  .table {
+    width: 100%;
+  }
+  
+  /* Add some style to the table header */
+  .table thead th {
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* Add some padding to the table cells */
+  .table td, .table th {
+    padding: 0.75rem;
+  }
+  
+  /* Add some border to the table */
+  .table {
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Add some hover effect to the table rows */
+  .table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Style the button */
+  .btn {
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: gray;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Add some responsive styles */
+  @media (max-width: 576px) {
+    /* Hide the table header */
+    .table thead {
+      display: none;
+    }
+    
+    /* Show the table rows as block elements */
+    .table tbody tr {
+      display: block;
+      margin-bottom: 1rem;
+      border: 1px solid #dee2e6;
+    }
+    
+    /* Show the table cells as inline-block elements */
+    .table tbody td {
+      display: inline-block;
+      text-align: left;
+    }
+    
+    /* Set the table cell width */
+    .table tbody td:before {
+      content: attr(data-th);
+      font-weight: bold;
+      display: inline-block;
+      width: 6rem;
+      margin-right: 0.5rem;
+    }
+  }
+  
 
-
+</style>
+<div class="container">
 <table class="table">
     <thead>
       <tr>
@@ -40,6 +116,6 @@
       </tr>
     </tbody>
   </table>
-  
   <button type="button" class="btn btn-primary">Generate Report</button>
+</div>
   {% endblock content %}

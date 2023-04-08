@@ -2,27 +2,29 @@
 {% block content %}
 
 <head>
+  <script>
 
+</script>
 </head>
 <!-- hero section -->
-<section id="home" class="py-5">
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 d-flex align-items-center justify-content-center">
-            <div class="text-center">
-              <h1 class="display-4">Exam Supervision Management</h1>
-              <p class="lead">Efficiently assign teachers to exam rooms with ease</p>
-            </div>
-          </div>
-          
-          <div class="col-md-6">
-            <img src="media/image/exam.jpg" class="img-fluid" alt="Exam Supervision Image">
-          </div>
-        </div>
+<section class="hero">
+  <div class="container">
+    <h1>Welcome to Exam Supervision</h1>
+    <p>Manage and monitor exams with ease</p>
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-3">
+        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Student</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Teacher</a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Administration</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
   <!-- end hero section -->
   
       <!--teachers section-->
@@ -37,7 +39,7 @@
                 <a href="{% url 'login' %}" class="btn">Learn More</a>
               </div>
               <div class="col-md-6">
-                <img src="media/image/teacher.webp" class="img-fluid" alt="Teachers Image">
+                <img src="/media/image/teacher.webp" class="img-fluid" alt="Teachers Image">
               </div>
             </div>
           </div>
