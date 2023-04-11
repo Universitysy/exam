@@ -64,8 +64,21 @@ class Student(User):
     class Meta:
         proxy = True
 
+class Student_user(Student):
+    class Meta:
+        verbose_name = 'Student'
+        verbose_name_plural = 'Students'
+
+
+class Room(models.Model):
+    name = models.CharField( max_length=20, default=None)
+    max_capacity = models.PositiveIntegerField(default=0)
+
+
+
 
 class TeacherManager(BaseUserManager):
+
     def _create_user(self, username, email, password, **extra_fields):
         if not username:
             raise ValueError('The Username field must be set')
@@ -88,10 +101,41 @@ class TeacherManager(BaseUserManager):
         return super().get_queryset().filter(role='TEACHER')
 
 class Teacher(User):
+
+
     objects = TeacherManager()
+
+
 
     class Meta:
         proxy = True
+
+class Teacher_user(Teacher):
+    class Meta:
+        verbose_name = 'Teacher'
+        verbose_name_plural = 'Teachers'
+
+class Teacher_Availability(models.Model):
+    class Meta:
+        verbose_name = 'Teacher_Availability'
+        verbose_name_plural = 'Teacher_Availabilities'
+
+      
+    teacher_av = models.ForeignKey(Teacher, on_delete= models.CASCADE)
+    time_start = models.TimeField(default=None)
+    time_end = models.TimeField(default=None)
+
+    date = models.DateField(default=None)
+
+class Exam(models.Model):
+
+    start_time = models.TimeField(default=None)
+    end_time = models.TimeField(default=None)
+    date = models.DateField()
+    assigned_room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    tecaher_exam = models.ForeignKey(Teacher_user, on_delete=models.CASCADE)
+    teacher_preferred_time = models.ForeignKey(Teacher_Availability, on_delete=models.CASCADE)
+
 
 
 class AdminManager(BaseUserManager):
@@ -122,46 +166,48 @@ class Admin(User):
     class Meta:
         proxy = True
 
+class Admin_user(Admin):
+    class Meta:
+        verbose_name = 'Admin'
+        verbose_name_plural = 'Admins'
 
 
-
-
-
-
-
-
-
-class Request_t(models.Model):
+class Exam_Swap_Request(models.Model):
     body = models.CharField(max_length=50, default=None)
     status = models.BooleanField(default=False)
-    teacher_req = models.ForeignKey(
-        Teacher,
+    requesting_professor = models.ForeignKey(
+        Teacher_user,
         on_delete=models.CASCADE,
-        related_name='requests',
-        related_query_name='request'  # <-- this line to avoid conflict
+        related_name='requested_swaps',
+        related_query_name='requested_swaps'  # <-- this line to avoid conflict
     )
+    responding_professor = models.ForeignKey(
+        Teacher_user,
+        on_delete=models.CASCADE,
+        related_name='responded_swaps',
+        related_query_name='responded_swaps'  # <-- this line to avoid conflict
+    )
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=datetime.now)
 
 class Course(models.Model):
     name = models.CharField(max_length=50, default=None)
-    student_courses = models.ManyToManyField(Student, default=None)
     created_at = models.DateTimeField(default=datetime.now)
     updated_at = models.DateTimeField(default=datetime.now)
 
 
-class Time_A(models.Model):
-      time_choices = [
-        ('8:00 --> 9:00 AM', '8:00 --> 9:00 AM'),
-        ('9:00 --> 10:00 AM', '8:00 --> 10:00 AM'),
-        ('10:00 --> 11:00 AM', '8:00 --> 11:00 AM'),
-        ('11:00 --> 12:00 PM', '8:00 --> 12:00 PM'),
-        ('12:00 --> 1:00 PM', '8:00 --> 1:00 PM'),
-        ('1:00 --> 2:00 PM', '8:00 --> 2:00 PM'),
-        ('2:00 --> 3:00 PM', '8:00 --> 3:00 PM'),
-        ('3:00 --> 4:00 PM', '8:00 --> 4:00 PM'),
-        # Add more choices as needed
-    ]
+class Exam_Registration(models.Model):
+    registration_date_time = models.DateTimeField(default=datetime.now)
+    registered_student = models.ForeignKey(Student, on_delete= models.CASCADE)
+    associated_exam =  models.ForeignKey(Exam, on_delete=models.CASCADE)
+    seat_number = models.PositiveIntegerField(default=0)
+    course_exam = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-      time = models.TimeField(choices=time_choices)
 
-      date = models.DateField()
+
+
+
+
+
+
+

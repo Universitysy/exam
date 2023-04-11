@@ -86,7 +86,7 @@ def add_teacher(request):
         else:
 
 
-            teacher = Teacher.objects.create_user(username = username,
+            teacher = Teacher_user.objects.create_user(username = username,
                                                   first_name= first_name,
                                                   last_name=last_name,
                                                   email = email,
@@ -117,7 +117,7 @@ def add_student(request):
             return render(request, 'pages/manageStudent.html', {'students': students, 'error': 'this email has been taken use your own email!'})
         else:
 
-            teacher = Teacher.objects.create_user(username = username,
+            student = Student_user.objects.create_user(username = username,
                                                   first_name= first_name,
                                                   last_name=last_name,
                                                   email = email,
@@ -132,15 +132,18 @@ def add_student(request):
     pass
 
 def remove_student(request, student_id):
-    student = Student.student.get(id=student_id)
+    student = Student.objects.get(id=student_id)
     student.delete()
     return redirect(reverse('add_student'))
 
 
 def remove_teacher(request, teacher_id):
-    teacher = Teacher.teacher.get(id=teacher_id)
+    teacher = Teacher.objects.get(id=teacher_id)
     teacher.delete()
     return redirect(reverse('add_teacher'))
+
+
+
 
 
 
