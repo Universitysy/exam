@@ -1,90 +1,182 @@
 {% extends 'bases/base.html' %}
+
 {% block content %}
 
 <head>
-  <script>
+   <style>
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .hero {
+    width: 90vw;
+    height: 70vh;
+  }
+  .btn {
+    margin-bottom: 10px;
+  }
+  /* Blue effect */
+  .btn-blue {
+    background-color: blue;
+    color: white;
+    transition: all 0.2s ease-in-out;
+  }
+  .btn-blue:hover {
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+  }
+  /* cards */
+  .card {
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    background-color: #f8f9fa;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  }
+  .card i {
+    color: black;
+    font-size: 4rem;
+  }
+  .card .card-body {
+    padding: 1.25rem;
+  }
+  .card-title {
+    font-size: 1.5rem;
+    color:black;
+  }
 
-</script>
+  .card-text {
+    font-size: 1.2rem;
+    color:black;
+  }
+  .card-deck .card {
+    margin-bottom: 30px;
+  }
+  @media (min-width: 576px) {
+    .card-deck {
+      display: flex;
+      flex-flow: row wrap;
+    }
+    .card-deck .card {
+      flex: 1;
+      margin-right: 15px;
+      margin-left: 15px;
+    }
+    .card-deck .card:last-child {
+      margin-right: 0;
+    }
+  }
+</style>
 </head>
+
+<body>
 <!-- hero section -->
 <section class="hero">
   <div class="container">
     <h1>Welcome to Exam Supervision</h1>
-    <p>Manage and monitor exams with ease</p>
+    <p>Revolutionize the way you manage and administer exams with Exam Supervision. Our powerful platform streamlines the entire exam process, from creating and distributing exam materials to monitoring and analyzing student performance. With Exam Supervision, you can ensure academic integrity and efficiency while providing a seamless experience for both students and instructors.</p>
     <div class="row justify-content-center">
       <div class="col-md-4 mb-3">
-        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Student</a>
+        <a href="#" class="btn btn-blue btn-lg btn-block">Login as Student</a>
       </div>
       <div class="col-md-4 mb-3">
-        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Teacher</a>
+        <a href="#" class="btn btn-blue btn-lg btn-block">Login as Teacher</a>
       </div>
       <div class="col-md-4">
-        <a href="#" class="btn btn-dark btn-lg btn-block">Login as Administration</a>
+        <a href="#" class="btn btn-blue btn-lg btn-block">Login as Administration</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end hero section -->
+
+<!--teachers section-->
+<section class="py-5">
+  <div class="row card-deck">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light-blue text-white h-100">
+          <div class="card-body d-flex align-items-center justify-content-center">
+            <i class="fas fa-user-graduate fa-3x mb-3"></i>
+            <div>
+              <h3 class="card-title text-center mb-0">Easy Teacher Assignment</h3>
+              <p class="card-text text-center">
+                Our platform allows teachers to enter their preferences and room
+                capacities, making it easy to assign teachers to exam rooms.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light-blue text-white h-100">
+          <div class="card-body d-flex align-items-center justify-content-center">
+            <i class="fas fa-file-excel fa-3x mb-3"></i>
+            <div>
+              <h3 class="card-title text-center mb-0">Excel and PDF Files</h3>
+              <p class="card-text text-center">
+                Teachers' assignments can be exported as an excel sheet or a pdf
+                file, making it easy to share with other faculty members.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light-blue text-white h-100">
+          <div class="card-body d-flex align-items-center justify-content-center">
+            <i class="fas fa-cog fa-3x mb-3"></i>
+            <div>
+              <h3 class="card-title text-center mb-0">Customizable Settings</h3>
+              <p class="card-text text-center">
+                Our platform offers customizable settings to suit your institution's needs and preferences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h2 class="mb-4">Efficient and Streamlined Exam Supervision</h2>
+        <p class="lead mb-4">
+          With our platform, universities and colleges can streamline
+          the exam process and save valuable time. Our easy-to-use
+          system allows you to enter teacher preferences, room
+          capacities, and assign teachers to rooms quickly and easily.
+        </p>
+        <p class="lead mb-4">
+          We also provide teachers with the ability to make exchanges,
+          ensuring that they can work together and support each other as
+          needed. And with our notifications feature, teachers and
+          students can be notified before the exam begins, helping to
+          ensure a smooth and efficient process from start to finish.
+        </p>
+        <a href="#" class="btn btn-primary btn-lg">Learn More</a>
+      </div>
+      <div class="col-md-6">
+        <img
+          src="\media\image\teacher.webp"
+          alt="Exam Supervision"
+          class="img-fluid"
+        />
       </div>
     </div>
   </div>
 </section>
 
-  <!-- end hero section -->
-  
-      <!--teachers section-->
-        <section id="teacher" class="py-5 bg-light">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <h2>Our Teachers</h2>
-                <p class="lead">Our experienced and highly qualified teachers are committed to providing the best possible exam supervision experience for our students.</p>
-                <p>Each teacher goes through a rigorous selection process and is trained to ensure they are equipped with the skills necessary for successful exam supervision.</p>
-                <p>Our teachers are also required to regularly update their knowledge and skills to ensure they are up-to-date with the latest exam supervision practices and policies.</p>
-                <a href="{% url 'login' %}" class="btn">Learn More</a>
-              </div>
-              <div class="col-md-6">
-                <img src="/media/image/teacher.webp" class="img-fluid" alt="Teachers Image">
-              </div>
-            </div>
-          </div>
-        </section>
-            <!--end teachers section-->
-          <!--rooms section-->
-          <section id="rooms" class="bg-light py-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4 mx-auto text-center order-md-1">
-                  <h2 class="mb-3">Exam Rooms</h2>
-                  <p class="lead">View the available exam rooms and their capacities.</p>
-                </div>
-                <div class="col-md-8 col-lg-6 order-md-2">
-                  <section id="rooms-section">
-                    <h3 class="mb-4">Exam Rooms:</h3>
-                    <ul class="list-group mb-4">
-                      <li class="list-group-item">Smith Hall: 50 capacity</li>
-                      <li class="list-group-item">Johnson Hall: 30 capacity</li>
-                      <li class="list-group-item">Brown Hall: 40 capacity</li>
-                    </ul>
-                    <a href="Rooms.html" class="btn">View More Rooms</a>
-                  </section>
-                </div>
-              </div>
-            </div>
-          </section>
-          
-          
-           <!-- end rooms section -->
-  <!-- Assignment Section -->
-  <section id="assignments">
-    <div class="container">
-      <h2 class="section-heading">Assignments</h2>
-      <p class="section-description">
-        The "Assignments" section is where you can view and manage the assignments of teachers
-         to exam rooms. Each row of the table displays the teacher's name, 
-         the assigned room number, and the time of the exam. You can easily add a new 
-         assignment by clicking on the "Add Assignment" button. This section allows you 
-         to keep track of all exam assignments in one place, ensuring that all teachers 
-         are properly assigned to their respective rooms and times.
-      </p>
-      <button class="btn">view the assignment</button>
-    </div>
-  </section>
-  <!--end assignment section-->
+{% endblock content %}
 
-  {% endblock content %}
+
+
