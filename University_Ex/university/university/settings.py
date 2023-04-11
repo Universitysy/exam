@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
-    'exam',
+    'uni',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTH_USER_MODEL = 'exam.User'
+AUTH_USER_MODEL = 'uni.User'
 
 
 
