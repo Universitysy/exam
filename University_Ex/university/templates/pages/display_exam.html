@@ -1,11 +1,13 @@
+
+
 {% extends 'bases/base.html' %}
 
+
 {% block content %}
-{% if request.user.role == 'ADMIN' %}
-  
- 
+{% if request.user.role == 'ADMIN' or request.user.role == 'TEACHER' %}
+
   <head>
-   
+ 
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -117,61 +119,86 @@
   
   </head>
 
-    <div class="container1">
-      <h1>Add teacher</h1>
-      <form action="" method="POST"> 
-        {% csrf_token %}
-        <label for="username">user name:</label>
-        <input type="text" id="username" name="username" placeholder="Enter teacher name">
 
-       
-        <label for="Fisrtname">Name:</label>
-        <input type="text" id="firstname" name="firstName" placeholder=" Enter teacher first name">
-   
-        <label for="lastname">last Name:</label>
-        <input type="text" id="lastname" name="lastName" placeholder="last name">
-
- 
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="Enter teacher email">
-  
-
-  
-
-
-
-        <input type="submit" value="Add teacher">
-      </form>
-    </div>
 	<div class="container6">
-		<h1>teacher List</h1>
+		<h1> Exams </h1>
+    <form method="post" action="{% url 'add_time' %}">
+      {% csrf_token %}
 		<table>
 			<thead>
 				<tr>
-          <th>Username</th>
-					<th>Fisrt Name </th>
-					<th>Last Name</th>
-					<th>Email</th>
+          <th>Exam ID</th>
+					<th> Start Time </th>
+					<th>End Time</th>
+					<th>Date</th>
+                    <th>Room</th>
+                    <th>Course</th>
+                    <th> Action </th>
+                 
+				</tr>
+			</thead>
+			<tbody>
+        {% for exam in exams %}
+        <tr>
+          <td> {{ exam.id }}</td>
+          <td> {{ exam.start_time }}</td>
+		  <td> {{ exam.end_time }}</td>
+          <td>{{ exam.date }}</td>
+          <td>{{ exam.assigned_room.name }} </td>
+          <td>{{ exam.course_exam.name }} </td>
+          {% if request.user.role == 'TEACHER' %}
+          <td><input type="checkbox" name="preferred_time" value="{{ exam.id }}"></td>
+          {% endif %}
+		</tr>
+        {% endfor %}
+
+				<!-- Repeat this pattern for each new student -->
+			</tbody>
+		</table>
+    <button type="submit" class="btn-btn primary"> select exams</button>
+	</div>
+
+  {% if request.user.role == 'TEACHER' %}
+
+    <div class="container6">
+		<h1>Preferred Time </h1>
+        <h3> ID : {{ request.user.id }} </h3>
+        <h3> Name : {{ request.user }} </h3>
+		<table>
+			<thead>
+				<tr>
+          <th> room </th>
+          <th> course </th>
+					<th>Start Time </th>
+					<th>End Time </th>
+					<th>Date</th>
 	
 				</tr>
 			</thead>
 			<tbody>
-        {% for teacher in teachers %}
+        {% for exam  in selected_exams %}
         <tr>
-          <td> {{ teacher.username }}</td>
-					<td> {{ teacher.first_name }}</td>
-          <td>{{ teacher.last_name }}</td>
-					<td>{{ teacher.email }} </td>
+          <td> {{ exam.e_x.assigned_room.name }}</td>
+          <td> {{ exam.e_x.course_exam.name }}</td>
+          <td> {{ exam.t_a.time_start }}</td>
+		      <td> {{ exam.t_a.time_end }}</td>
+
+     
+          <td>{{ exam.e_x.date }}</td>
 					
 
 				</tr>
         {% endfor %}
+
 				<!-- Repeat this pattern for each new student -->
 			</tbody>
 		</table>
 	</div>
 
-  
+{% endif %}
  
 {% endif %}
+
+
+
 {% endblock content %}

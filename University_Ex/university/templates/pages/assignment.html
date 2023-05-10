@@ -1,5 +1,6 @@
 {% extends 'bases/base.html' %}
 {% block content %}
+{% if request.user.role == 'TEACHER' or request.user.role == 'ADMIN' %}
 <style>
   /* Set the table to be responsive */
   .container {
@@ -118,4 +119,5 @@
   </table>
   <button type="button" class="btn btn-primary">Generate Report</button>
 </div>
+{% endif %}
   {% endblock content %}

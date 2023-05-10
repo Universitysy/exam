@@ -5,17 +5,23 @@
 <section id="rooms" class="py-5">
     <div class="container">
         <h2 class="text-center mb-5">Exam Rooms</h2>
+        {% for room in rooms %}
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
+                    
                     <div class="card-body">
-                        <h3>Room 101</h3>
-                        <p>Capacity: 50</p>
-                        <p>Location: Building A, First Floor</p>
+                        
+                        <h3> Room {{ room.id }}</h3>
+                        <p> Capacity :{{ room.max_capacity}}</p>
+                        <p> location :{{ room.name }}</p>
+                        
                     </div>
+                   
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </section>
 

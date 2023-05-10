@@ -27,15 +27,22 @@
           <li class="nav-item me-3">
             <a class="nav-link active" href="{% url 'student_home' %}">Home</a>
           </li>
+  
+  
+          <li class="nav-item me-3">
+            <a class="nav-link" href="{% url 'rooms' %}">Rooms</a>
+          </li>
+          {% if request.user.role == 'TEACHER' or request.user.role == 'ADMIN'  %}
+          <li class="nav-item me-3">
+            <a class="nav-link" href="{% url 'assi_path' %}">Assignments</a>
+          </li>
           <li class="nav-item me-3">
             <a class="nav-link" href="{% url 'teacher_path' %}">Teachers</a>
           </li>
           <li class="nav-item me-3">
-            <a class="nav-link" href="{% url 'room_path' %}">Rooms</a>
+            <a class="nav-link" href="{% url 'display_exam' %}">Exam</a>
           </li>
-          <li class="nav-item me-3">
-            <a class="nav-link" href="{% url 'assi_path' %}">Assignments</a>
-          </li>
+          {% endif %}
           <li class="nav-item me-3">
             <a class="nav-link" href="#">Notifications</a>
           </li>
@@ -65,15 +72,21 @@
 
 
           
-          {% if request.user.is_superuser %}
+          {% if request.user.role == 'ADMIN' %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Admin
+              MANAGE
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-              <a class="dropdown-item" href="{% url 'add_teacher' %}">Teacher</a>
-              <a class="dropdown-item" href=" {% url 'add_student' %} ">Student</a>
+              <a class="dropdown-item" href="{% url 'add_teacher' %}">Manage Teacher</a>
+              <a class="dropdown-item" href=" {% url 'add_student' %} ">Manage Student</a>
+              <a class="dropdown-item" href=" {% url 'add_exam' %} ">Manage Exam</a>
+              <a class="dropdown-item" href=
+              "
+              {% url 'all_time'  %}
+              ">Manage Time</a>
+
             </div>
           </li>
           {% endif %}

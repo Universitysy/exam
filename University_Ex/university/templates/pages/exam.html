@@ -1,11 +1,14 @@
+
+
 {% extends 'bases/base.html' %}
+
 
 {% block content %}
 {% if request.user.role == 'ADMIN' %}
-  
+
  
   <head>
-   
+ 
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -118,54 +121,72 @@
   </head>
 
     <div class="container1">
-      <h1>Add teacher</h1>
+      <h1>Add Exam</h1>
       <form action="" method="POST"> 
-        {% csrf_token %}
-        <label for="username">user name:</label>
-        <input type="text" id="username" name="username" placeholder="Enter teacher name">
+       {% csrf_token %}
+        <label for="start_time">Start time:</label>
+        <input type="time" id="start_time" name="start_time" placeholder="Enter start time">
 
        
-        <label for="Fisrtname">Name:</label>
-        <input type="text" id="firstname" name="firstName" placeholder=" Enter teacher first name">
-   
-        <label for="lastname">last Name:</label>
-        <input type="text" id="lastname" name="lastName" placeholder="last name">
+        <label for="end_time">End time:</label>
+        <input type="time" id="end_time" name="end_time" placeholder="Enter end time">
+  
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" placeholder="last name">
+
+
+        <label>Course</label>
+        <select name="course_exam">
+          <option value="null" selected> </option>
+           {% for course in courses %} 
+           <option value = "{{course.name}}"> {{ course.name }} </option>
+
+           {% endfor %}
+        </select>
+
+        <label>Room</label>
+        <select name="assigned_room">
+          <option value="null" selected> </option>
+            {% for room in rooms %} 
+            <option value = "{{room.name}}"> {{ room.name }} </option>
+ 
+            {% endfor %}
+         </select>
 
  
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="Enter teacher email">
   
 
-  
-
-
-
-        <input type="submit" value="Add teacher">
+        <input type="submit" value="Add Exam">
       </form>
     </div>
 	<div class="container6">
-		<h1>teacher List</h1>
+		<h1>Exam List</h1>
 		<table>
 			<thead>
 				<tr>
-          <th>Username</th>
-					<th>Fisrt Name </th>
-					<th>Last Name</th>
-					<th>Email</th>
+          <th>Exam ID</th>
+					<th> Start Time </th>
+					<th>End Time</th>
+					<th>Date</th>
+                    <th>Room</th>
+                    <th>Course</th>
+                 
 	
 				</tr>
 			</thead>
 			<tbody>
-        {% for teacher in teachers %}
+        {% for exam in exams %}
         <tr>
-          <td> {{ teacher.username }}</td>
-					<td> {{ teacher.first_name }}</td>
-          <td>{{ teacher.last_name }}</td>
-					<td>{{ teacher.email }} </td>
-					
+          <td> {{ exam.id }}</td>
+          <td> {{ exam.start_time }}</td>
+		  <td> {{ exam.end_time }}</td>
+          <td>{{ exam.date }}</td>
+          <td>{{ exam.assigned_room.name }} </td>
+          <td>{{ exam.course_exam.name }} </td>
 
-				</tr>
+		</tr>
         {% endfor %}
+
 				<!-- Repeat this pattern for each new student -->
 			</tbody>
 		</table>

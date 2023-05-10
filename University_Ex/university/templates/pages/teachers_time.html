@@ -1,11 +1,13 @@
+
+
 {% extends 'bases/base.html' %}
+
 
 {% block content %}
 {% if request.user.role == 'ADMIN' %}
-  
- 
+
   <head>
-   
+ 
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -117,61 +119,93 @@
   
   </head>
 
-    <div class="container1">
-      <h1>Add teacher</h1>
-      <form action="" method="POST"> 
-        {% csrf_token %}
-        <label for="username">user name:</label>
-        <input type="text" id="username" name="username" placeholder="Enter teacher name">
 
-       
-        <label for="Fisrtname">Name:</label>
-        <input type="text" id="firstname" name="firstName" placeholder=" Enter teacher first name">
-   
-        <label for="lastname">last Name:</label>
-        <input type="text" id="lastname" name="lastName" placeholder="last name">
+  <div class="container6">
+    <h1> Exam by Room </h1>
+    <form method="post" action="{% url 'delete_selected_exam' %}">
+      {% csrf_token %}
+    {% for room, exams in exams_by_room.items %}
+    <h2>{{ room }}</h2>
 
+    
  
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="Enter teacher email">
-  
+    <table>
+        <thead>
+        <tr>
+          <th>Teacher Username</th>
+          <th>full Name </th>
+          <th>Start-End Time/ Date </th>
+          <th>course</th>
+          <th>selected </th>
+        </tr>
+        </thead>
+        <tbody>
+                
+        {% for se in exams %}
+        <tr>
+            <td>{{ se.t_a.teacher_av.username }}
+            <td>{{ se.t_a.teacher_av.first_name }}  {{ se.t_a.teacher_av.last_name }}</td>
+            <td>{{ se.t_a.time_start }} - {{ se.t_a.time_end }} / {{ se.t_a.date }}</td>
+            <td>{{ se.e_x.course_exam.name }}</td>
+            <td><input type="checkbox" name="selected_exam" value="{{ se.id }}"></td>
+   
+          
+        </tr>
+        {% endfor %}
+      
+        </tbody>
+    </table>
+    
+    {% endfor %}
+    <button type="submit" class="btn primary" >Delete selected exams</button>
+</div>
 
-  
-
-
-
-        <input type="submit" value="Add teacher">
-      </form>
-    </div>
 	<div class="container6">
-		<h1>teacher List</h1>
-		<table>
+		<h1> Exam by teachers username </h1>
+        {% for teacher in teachers %}
+        <h2>{{ teacher }}</h2>
+
+
+        <table>
 			<thead>
-				<tr>
-          <th>Username</th>
-					<th>Fisrt Name </th>
-					<th>Last Name</th>
-					<th>Email</th>
-	
-				</tr>
+			<tr>
+          <th>Room</th>
+          <th>Course</th>
+          <th>Start-End Time/ Date </th>
+  
+         
+			</tr>
 			</thead>
 			<tbody>
-        {% for teacher in teachers %}
-        <tr>
-          <td> {{ teacher.username }}</td>
-					<td> {{ teacher.first_name }}</td>
-          <td>{{ teacher.last_name }}</td>
-					<td>{{ teacher.email }} </td>
-					
+                
+            {% for se in selected_exam %}
+            <tr>
+            {% if se.t_a.teacher_av.username == teacher %}
+                <td>{{ se.e_x.assigned_room.name }} </td>
+                <td>{{ se.e_x.course_exam.name }} </td>
+                <td>{{ se.t_a.time_start }} - {{ se.t_a.time_end }} / {{ se.t_a.date }}</td>
 
-				</tr>
-        {% endfor %}
+                
+            {% endif %}
+    
+		    </tr>
+            {% endfor %}
+      
+
 				<!-- Repeat this pattern for each new student -->
 			</tbody>
 		</table>
+    {% endfor %}
+    
+
+
 	</div>
 
+
   
- 
-{% endif %}
+
+
+
+
+{% endif %} 
 {% endblock content %}

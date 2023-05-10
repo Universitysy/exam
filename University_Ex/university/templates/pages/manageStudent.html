@@ -1,11 +1,11 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
+{% if request.user.role == 'ADMIN' %}
 
-  {% csrf_token %}
  
   <head>
-    <style>
+ 
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -114,36 +114,29 @@
         }
       </style>
       
-    </style>
+  
   </head>
 
     <div class="container1">
       <h1>Add Student</h1>
-      <form action="" method="post"> 
-        <label for="username">user name:</label>
+      <form action="" method="POST"> 
+       {% csrf_token %}
+        <label for="username">username:</label>
         <input type="text" id="username" name="username" placeholder="Enter student name">
 
        
-        <label for="Fisrtname">Name:</label>
-        <input type="text" id="firstname" name="firstname" placeholder="first name">
+        <label for="fisrtname">Name:</label>
+        <input type="text" id="firstname" name="firstName" placeholder="first name">
   
         <label for="lastname">last Name:</label>
-        <input type="text" id="lastname" name="lastname" placeholder="last name">
+        <input type="text" id="lastname" name="lastName" placeholder="last name">
 
  
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" placeholder="Enter student email">
   
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" placeholder="Enter student phone number">
   
-        <label for="major">Major:</label>
-        <select id="major" name="major">
-          <option value="cs">Computer Science</option>
-          <option value="math">Mathematics</option>
-          <option value="eng">Engineering</option>
-          <option value="bio">Biology</option>
-        </select>
+
 
         <input type="submit" value="Add Student">
       </form>
@@ -153,28 +146,25 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Name</th>
+          <th>Username</th>
+					<th>Fisrt Name </th>
+					<th>Last Name</th>
 					<th>Email</th>
-					<th>Phone</th>
-					<th>Major</th>
-          <th>password</th>
+	
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>sedra maghmumi</td>
-					<td>sidra.maghmumi@gmail.com</td>
-					<td>71-955735</td>
-					<td>Computer Science</td>
-          <td>1234569</td>
+        {% for student in students %}
+        <tr>
+          <td> {{ student.username }}</td>
+					<td> {{ student.first_name }}</td>
+          <td>{{ student.last_name }}</td>
+					<td>{{ student.email }} </td>
+					
+
 				</tr>
-				<tr>
-					<td>sedra maghmumi</td>
-					<td>sidra.maghmumi@gmail.com</td>
-					<td>71-955735</td>
-					<td>Computer Science</td>
-          <td>1234569</td>
-				</tr>
+        {% endfor %}
+
 				<!-- Repeat this pattern for each new student -->
 			</tbody>
 		</table>
@@ -182,5 +172,5 @@
 
   
  
-
+{% endif %}
 {% endblock content %}
