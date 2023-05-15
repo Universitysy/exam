@@ -10,6 +10,8 @@ from django.urls import reverse
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from .utils import TeacherCalendar
+from .utils import AdminCalendar
 
 
 def teacher_path(request):
@@ -178,15 +180,29 @@ def delete_exam(request, exam_id):
     exam = Exam.objects.get(id=exam_id)
     exam.delete()
     return redirect(reverse('add_teacher'))
+
     
-def list_of_exams(request):
+def list_of_exams(request, year=None , month=None):
     teacher = request.user
     teacher_availability = Teacher_Availability.objects.filter(teacher_av=teacher)
     selected_exams = Selected_exam.objects.filter(t_a__in=teacher_availability)
     exams = Exam.objects.all()
 
+  
+    if year and month:
+        year, month = int(year), int(month)
+    else:
+        now = datetime.now()
+        year, month = now.year, now.month
+    ##calender
+    calendar_html = TeacherCalendar(year, month, teacher).formatmonth()
+ 
 
-    context = {'exams':exams, 'selected_exams':selected_exams}
+    context = {'exams':exams, 
+               'selected_exams':selected_exams,
+               'calendar': calendar_html,
+               'teacher': teacher,
+                }
     return render(request, 'pages/display_exam.html', context)
 
 
@@ -228,7 +244,7 @@ def select_preferred_time(request):
 
 
 
-def teachers_time(request):
+def teachers_time(request, year=None , month=None):
     # SELECT *
     # FROM selected_exam
     # INNER JOIN teacher_availability ON selected_exam.t_a_id = teacher_availability.id
@@ -243,11 +259,24 @@ def teachers_time(request):
     exams_by_room = {}
     for room in rooms:
         exams_by_room[room] = [se for se in selected_exam if se.e_x.assigned_room.name == room]
-    
+
+
+    #admin calender
+    teacher = request.user
+    if year and month:
+        year, month = int(year), int(month)
+    else:
+        now = datetime.now()
+        year, month = now.year, now.month
+   
+    calendar_html = AdminCalendar(year, month, teacher).formatmonth()
+ 
     context = {
     'teachers': teachers,
     'selected_exam': selected_exam ,
     'exams_by_room': exams_by_room,
+    'calendar': calendar_html,
+    'teacher': teacher,
     }
     return render(request, 'pages/teachers_time.html', context)
 
@@ -312,6 +341,10 @@ def add_room(request):
     return redirect('add_exam')
 
         
+
+
+
+
 
 
 

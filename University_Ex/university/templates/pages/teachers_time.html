@@ -118,7 +118,7 @@
       
   
   </head>
-
+  
 
   <div class="container6">
     <h1> Exam by Room </h1>
@@ -195,17 +195,21 @@
 				<!-- Repeat this pattern for each new student -->
 			</tbody>
 		</table>
+    
     {% endfor %}
     
-
+    <div>
+      {{ calendar|safe }}
+    </div>
 
 	</div>
 
 
-  
-
+ 
 
 
 
 {% endif %} 
+
+  
 {% endblock content %}
