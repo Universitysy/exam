@@ -1,0 +1,50 @@
+{% extends 'bases/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Welcome to the Exam System</h1>
+        <p>Here, you can access your exams and track your progress.</p>
+        <h2>Upcoming Exams</h2>
+        <ul>
+          <li>Exam 1 - Math - June 1, 2023</li>
+          <li>Exam 2 - English - June 5, 2023</li>
+          <li>Exam 3 - Science - June 10, 2023</li>
+        </ul>
+        <h2>Login to Access Your Exams</h2>
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter your username">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <h2>Helpful Resources</h2>
+        <ul>
+          <li><a href="#">Study Materials</a></li>
+          <li><a href="#">Exam Rules</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+        <h2>Contact Technical Support</h2>
+        <p>If you have any technical issues, please contact our technical support team:</p>
+        <ul>
+          <li>Email: techsupport@example.com</li>
+          <li>Phone: 555-1234</li>
+        </ul>
+        <h2>Contact Customer Service</h2>
+        <p>If you have any questions or concerns, please contact our customer service team:</p>
+        <ul>
+          <li>Email: customerservice@example.com</li>
+          <li>Phone: 555-5678</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+{% endblock content %}

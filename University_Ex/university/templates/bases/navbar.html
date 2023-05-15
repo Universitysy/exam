@@ -1,20 +1,9 @@
-<head>
-  <style>
-  .navbar {
-    height: 80px;
-    background-color: blue;
-  }
-  .navbar-brand {
-    font-size: 2.5rem;
-    padding-top: 10px;
-  }
-  .navbar-nav .nav-link {
-    font-size: 1.5rem;
-    padding-top: 25px;
-  }
+{% load static %}
 
-  </style>
+<head>
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
+
 <header>
   <nav class="navbar navbar-expand-md navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
@@ -27,7 +16,6 @@
           <li class="nav-item me-3">
             <a class="nav-link active" href="{% url 'student_home' %}">Home</a>
           </li>
-  
   
           <li class="nav-item me-3">
             <a class="nav-link" href="{% url 'rooms' %}">Rooms</a>
@@ -53,25 +41,17 @@
           {% if request.user.is_authenticated %}
 
           <li class="nav-item me-3">
-            <span class="nav-link"> {{request.user}} </span>
+            <span class="nav-link"> {{request.user.username}} </span>
           </li>
           <li> <a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
 
           {% else %}
 
-            
-                
                   <li class="nav-item me-3">
                   <a class="nav-link" href="{% url 'login' %}">Login</a>
                   </li>
-             
-                    
-              
-
           {% endif %}
 
-
-          
           {% if request.user.role == 'ADMIN' %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown"
@@ -79,7 +59,8 @@
               MANAGE
             </a>
             <div class="dropdown-menu" aria-labelledby="adminDropdown">
-              <a class="dropdown-item" href="{% url 'add_teacher' %}">Manage Teacher</a>
+              <a class="dropdown-item" href="{\
+                url 'add_teacher' %}">Manage Teacher</a>
               <a class="dropdown-item" href=" {% url 'add_student' %} ">Manage Student</a>
               <a class="dropdown-item" href=" {% url 'add_exam' %} ">Manage Exam</a>
               <a class="dropdown-item" href=
