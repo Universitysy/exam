@@ -1,7 +1,6 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
-
 <div class="container">
   <div class="jumbotron">
     <h1 class="display-4">Exam Supervision</h1>
@@ -72,31 +71,45 @@
       </table>
     </div>
   </div>
-  <h2>Exam Results</h2>
-  <p>Students and teachers can view exam results by logging in to the system. The system provides detailed statistics on the number of exams taken, average grades, and other performance metrics. </p>
-  
-  <h2>Help and Support</h2>
-  <p>If you need help with the system or have any questions or concerns, our support team is here to help. Contact us using the information below:</p>
-  <ul>
-    <li>Email: support@examsupervision.com</li>
-    <li>Phone: 555-4321</li>
-    <li>Address: 456 Main Street, Anytown USA</li>
-  </ul>
 </div>
+
+
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Exam Results</h2>
+            <p class="card-text">Students and teachers can view exam results by logging in to the system. The system provides detailed statistics on the number of exams taken, average grades, and other performance metrics.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Help and Support</h2>
+            <p class="card-text">If you need help with the system or have any questions or concerns, our support team is here to help. Contact us using the information below:</p>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-envelope mr-2"></i>Email: support@examsupervision.com</li>
+              <li><i class="fas fa-phone mr-2"></i>Phone: 555-4321</li>
+              <li><i class="fas fa-map-marker-alt mr-2"></i>Address: 456 Main Street, Anytown USA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 <style>
 
-
-    .custom-margin {
-      margin-left: 50px;
-      margin-right: 50px;
-    }
-  
  .btn{
 margin-top:10px;
   }
   .jumbotron {
     background-color: #33A1C9;
     color: white;
+    margin-top:40px;
   }
   h2 {
     margin-top: 40px;

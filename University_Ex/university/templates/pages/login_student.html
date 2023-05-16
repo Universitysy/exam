@@ -3,48 +3,138 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>Welcome to the Exam System</h1>
-        <p>Here, you can access your exams and track your progress.</p>
-        <h2>Upcoming Exams</h2>
-        <ul>
-          <li>Exam 1 - Math - June 1, 2023</li>
-          <li>Exam 2 - English - June 5, 2023</li>
-          <li>Exam 3 - Science - June 10, 2023</li>
-        </ul>
-        <h2>Login to Access Your Exams</h2>
-        <form>
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter your username">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <h2>Helpful Resources</h2>
-        <ul>
-          <li><a href="#">Study Materials</a></li>
-          <li><a href="#">Exam Rules</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-        <h2>Contact Technical Support</h2>
-        <p>If you have any technical issues, please contact our technical support team:</p>
-        <ul>
-          <li>Email: techsupport@example.com</li>
-          <li>Phone: 555-1234</li>
-        </ul>
-        <h2>Contact Customer Service</h2>
-        <p>If you have any questions or concerns, please contact our customer service team:</p>
-        <ul>
-          <li>Email: customerservice@example.com</li>
-          <li>Phone: 555-5678</li>
-        </ul>
-      </div>
-    </div>
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome, [Student Name]</h1>
+    <p class="lead">Here are your upcoming exams and recent results.</p>
   </div>
   
+  <h2>Upcoming Exams</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Exam Name</th>
+        <th>Teacher</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Math Exam</td>
+        <td>Mr. Smith</td>
+        <td>May 10, 2023</td>
+        <td>9:00 AM - 11:00 AM</td>
+        <td>Room 101</td>
+      </tr>
+      <tr>
+        <td>English Exam</td>
+        <td>Ms. Jones</td>
+        <td>May 12, 2023</td>
+        <td>9:00 AM - 11:00 AM</td>
+        <td>Room 102</td>
+      </tr>
+      <tr>
+        <td>Science Exam</td>
+        <td>Ms. Lee</td>
+        <td>May 15, 2023</td>
+        <td>9:00 AM - 11:00 AM</td>
+        <td>Room 103</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h2>Recent Exam Results</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Exam Name</th>
+        <th>Date Taken</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Math Exam</td>
+        <td>May 1, 2023</td>
+        <td>85%</td>
+      </tr>
+      <tr>
+        <td>English Exam</td>
+        <td>April 28, 2023</td>
+        <td>92%</td>
+      </tr>
+      <tr>
+        <td>Science Exam</td>
+        <td>April 24, 2023</td>
+        <td>78%</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Exam Schedule</h2>
+            <p class="card-text">View your full exam schedule and exam details.</p>
+            <a href="#" class="btn btn-primary">View Schedule</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Exam Results</h2>
+            <p class="card-text">View your full exam results and statistics.</p>
+            <a href="#" class="btn btn-primary">View Results</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Course Schedule</h2>
+            <p class="card-text">View your course schedule and class details.</p>
+            <a href="#" class="btn btn-primary">View Schedule</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Grades</h2>
+            <p class="card-text">View your current grades and progress in each course.</p>
+            <a href="#" class="btn btn-primary">View Grades</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Attendance</h2>
+            <p class="card-text">View your attendance record for each course.</p>
+            <a href="#" class="btn btn-primary">View Attendance</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">Library</h2>
+            <p class="card-text">Search the library catalog and view your borrowed items.</p>
+            <a href="#" class="btn btn-primary">Go to Library</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
 {% endblock content %}
