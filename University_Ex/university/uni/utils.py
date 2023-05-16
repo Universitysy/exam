@@ -1,5 +1,5 @@
+# https://django-scheduler.readthedocs.io/en/latest/install.html
 # The code you provided is a custom implementation of HTMLCalendar for a Django application. The class TeacherCalendar inherits from the HTMLCalendar class and overrides some of its methods to accommodate the specific requirements of the application. Let's dive into the details of each method:
-
 # __init__(self, year=None, month=None, teacher=None):
 # This method initializes the TeacherCalendar object with the given year, month, and teacher.
 # It then calls the parent class's __init__() method to set up the basic properties of the calendar.
