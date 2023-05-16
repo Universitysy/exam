@@ -39,7 +39,7 @@ def student_home(request):
     
 def teacher_home(request):
     user = request.user
-    return render(request, 'teacher_home.html', {'user':user})
+    return render(request, 'pages/login_teacher.html', {'user':user})
 
 def admin_home(request):
     user = request.user
@@ -57,7 +57,7 @@ def login_view(request):
             if user.role == 'STUDENT':
                 return render(request, 'pages/login_student.html')
             elif user.role == 'TEACHER':
-                return redirect('teacher_home')
+                return render(request, 'pages/login_teacher.html')
             elif user.role == 'ADMIN':
                 return redirect('admins_home')
                 
