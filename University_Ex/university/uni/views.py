@@ -35,7 +35,7 @@ def home(request):
 
 def student_home(request):
     user = request.user
-    return render(request, 'student_home.html', {'user':user})
+    return render(request, 'pages/login_student.html', {'user':user})
     
 def teacher_home(request):
     user = request.user
@@ -55,7 +55,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.role == 'STUDENT':
-                return redirect('student_home')
+                return render(request, 'pages/login_student.html')
             elif user.role == 'TEACHER':
                 return redirect('teacher_home')
             elif user.role == 'ADMIN':
