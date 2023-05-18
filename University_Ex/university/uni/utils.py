@@ -38,11 +38,17 @@ class TeacherCalendar(HTMLCalendar):
         events_per_day = [event for event in events if event.t_a.date.day == day]
         d = ''
         for event in events_per_day:
-            d += f'<li class="calendar_list" style="color:green;"> {event.t_a.time_start} - {event.t_a.time_end} </li>'
+            hour_start = event.t_a.time_start.hour
+            min_start = event.t_a.time_start.minute
+            hour_end = event.t_a.time_end.hour
+            min_end = event.t_a.time_end.minute
+            room = event.e_x.assigned_room.name
+            d += f'<div style="color:blue; font-decoration:bold;"> ROOM :  <span style="color:red;"> {room} </span> FROM  <span style="color:red;">{hour_start}:{min_start:02d} to {hour_end}:{min_end:02d} </span> </div>'
 
         if day != 0:
-            return f"<td><span class='date'  >{day}</span><ul> {d} </ul></td>"
+                return f"<td><span class='date'>{day}</span><ul>{d}</ul></td>"
         return '<td></td>'
+
 
     def formatweek(self, theweek):
         s = ''.join(self.formatday(d, self.events) for (d, wd) in theweek)
@@ -62,26 +68,29 @@ class AdminCalendar(HTMLCalendar):
         self.teacher = teacher
         super(AdminCalendar, self).__init__()
 
-    def formatday(self, day, teacher_availabilities):
-        availabilities_per_day = teacher_availabilities.filter(date__day=day)
+    def formatday(self, day, events):
+        availabilities_per_day = [event for event in events if event.t_a.date.day == day]
         d = ''
         for availability in availabilities_per_day:
-            d += f'<li style="color:blue";>{availability.teacher_av.username}: {availability.time_start} - {availability.time_end}  </li>'
+            teacher_first_name =  availability.t_a.teacher_av.first_name
+            teacher_name = teacher_first_name + " " + availability.t_a.teacher_av.last_name
+            hour_start = availability.t_a.time_start.hour
+            min_start = availability.t_a.time_start.minute
+            hour_end = availability.t_a.time_end.hour
+            min_end = availability.t_a.time_end.minute
+            room = availability.e_x.assigned_room.name
+            course = availability.e_x.course_exam.name
+
+            d += f'<ul><li style="color:blue" >{room}: <ul> <li style="color:red;"> {teacher_name} - [{course}] <ul> <li style="color:red;"> {hour_start}:{min_start:02d} <span style="color:blue";> to </span> {hour_end}:{min_end:02d}</li> </ul>  </li> </ul> </ul>'
         if day != 0:
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
         return '<td></td>'
 
-    def formatweek(self, theweek, teacher_availabilities):
-        week = ''
-        for d, weekday in theweek:
-            week += self.formatday(d, teacher_availabilities)
-        return f'<tr> {week} </tr>'
+    def formatweek(self, theweek):
+        s = ''.join(self.formatday(d, self.events) for (d, wd) in theweek)
+        return f'<tr> {s} </tr>'
 
     def formatmonth(self, withyear=True):
-        teacher_availabilities = Teacher_Availability.objects.filter(date__year=self.year, date__month=self.month)
-        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
-        cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
-        cal += f'{self.formatweekheader()}\n'
-        for week in self.monthdays2calendar(self.year, self.month):
-            cal += f'{self.formatweek(week, teacher_availabilities)}\n'
-        return cal
+        teacher_availability = Teacher_Availability.objects.filter(date__year=self.year, date__month=self.month)
+        self.events = Selected_exam.objects.filter(t_a__in=teacher_availability)
+        return super().formatmonth(self.year, self.month, withyear)
