@@ -1,54 +1,55 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">Welcome, [Teacher Name]</h1>
-      <p class="lead">Here are your upcoming classes and schedule.</p>
-    </div>
+<div class="container mt-5">
+    <h1 class="mb-4">Teacher Home</h1>
   
     <div class="row">
-      <div class="col-lg-6 mb-5">
+      <div class="col-lg-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">My Classes</h2>
-            <p class="card-text">View your classes and student rosters.</p>
-            <a href="#" class="btn btn-primary">View Classes</a>
+            <h2 class="card-title">Course Schedule</h2>
+            <p class="card-text">View your course schedule and class details.</p>
+            <a href="#" class="btn btn-primary">View Schedule</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 mb-5">
+      <div class="col-lg-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">Attendance</h2>
-            <p class="card-text">Take attendance for your classes.</p>
-            <a href="#" class="btn btn-primary">Take Attendance</a>
+            <h2 class="card-title">Exam Schedule</h2>
+            <p class="card-text">View your full exam schedule and exam details.</p>
+            <a href="#" class="btn btn-primary">View Schedule</a>
           </div>
         </div>
       </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-lg-6 mb-5">
+      <div class="col-lg-4 mb-4">
         <div class="card">
           <div class="card-body">
             <h2 class="card-title">Grades</h2>
-            <p class="card-text">Enter and view grades for your classes.</p>
-            <a href="#" class="btn btn-primary">Enter Grades</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 mb-5">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Calendar</h2>
-            <p class="card-text">View your schedule and upcoming events.</p>
-            <a href="#" class="btn btn-primary">View Calendar</a>
+            <p class="card-text">View your students' current grades and progress in each course.</p>
+            <a href="#" class="btn btn-primary">View Grades</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>  
+
+
+    
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ calendar.title }}</div>
+
+                    <div class="card-body">
+                        {!! calendar.calendar_html %}
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+  
+  
 
 {% endblock content %}
