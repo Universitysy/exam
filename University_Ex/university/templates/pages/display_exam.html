@@ -28,6 +28,10 @@
           text-align: center;
           color: #2196F3; /* Change text color to blue */
         }
+        h4{
+          text-align:left;
+          color: #2196F3;
+        }
       
         form {
           background-color: #ffffff;
@@ -68,7 +72,8 @@
       
         .container6 {
           max-width: 1500px;
-          margin:  auto;
+          margin-left: 10%;
+          margin-right:10%;
           margin-top: 50px;
           padding: 20px;
           background-color: #ECEFF1; /* Add blue background color */
@@ -113,6 +118,13 @@
             padding: 5px;
           }
         }
+        .calendar{
+          margin-top:80px;
+          margin-left:10%;
+          margin-right:10%;
+       
+        }
+        
       </style>
       
   
@@ -160,14 +172,14 @@
   {% if request.user.role == 'TEACHER' %}
 
     <div class="container6">
-		<h1>Preferred Time </h1>
-        <h3> ID : {{ request.user.id }} </h3>
-        <h3> Name : {{ request.user }} </h3>
+		<h4>Preferred Time </h4>
+        <h6> ID : {{ request.user.id }} </h6>
+        <h6> Name : {{ request.user }} </h6>
 		<table>
 			<thead>
 				<tr>
-          <th> room </th>
-          <th> course </th>
+          <th> Room </th>
+          <th> Course </th>
 					<th>Start Time </th>
 					<th>End Time </th>
 					<th>Date</th>
@@ -194,11 +206,11 @@
 		</table>
 	</div>
 
- 
+ <div class="calendar">
   {{ calendar|safe }}
 
 {% endif %}
-
+ </div>
 
 
 
