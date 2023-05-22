@@ -342,6 +342,18 @@ def add_room(request):
 
         
 
+def all_teacher_time(request):
+    search_time = request.POST.get("search_time")
+    if not search_time:
+        all_exams = Selected_exam.objects.all()
+    else:
+        
+        all_exams = Selected_exam.objects.filter(t_a__time_start__icontains=search_time)
+    
+    context = {
+        'all_exams': all_exams,
+    }
+    return render(request, 'pages/all_teacher_time.html', context)
 
 
 
