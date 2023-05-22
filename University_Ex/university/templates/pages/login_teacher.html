@@ -4,52 +4,113 @@
 <div class="container mt-5">
     <h1 class="mb-4">Teacher Home</h1>
   
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Course Schedule</h2>
-            <p class="card-text">View your course schedule and class details.</p>
-            <a href="#" class="btn btn-primary">View Schedule</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Exam Schedule</h2>
-            <p class="card-text">View your full exam schedule and exam details.</p>
-            <a href="#" class="btn btn-primary">View Schedule</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title">Grades</h2>
-            <p class="card-text">View your students' current grades and progress in each course.</p>
-            <a href="#" class="btn btn-primary">View Grades</a>
-          </div>
+    <div class="card bg-blue">
+      <div class="card-body">
+        <h5 class="card-title">Calendar</h5>
+        <div class="card-text">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Day</th>
+                <th>Month</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2023-05-19</td>
+                <td>Tuesday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>2023-05-20</td>
+                <td>Wednesday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>2023-05-21</td>
+                <td>Thursday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>2023-05-22</td>
+                <td>Friday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>2023-05-23</td>
+                <td>Saturday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>2023-05-24</td>
+                <td>Sunday</td>
+                <td>May</td>
+                <td>2023</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="container">
+    <h1 class="text-center mt-5">Welcome to the Examination Supervision Management Website</h1>
+    <div class="card bg-blue text-black">
+      <div class="card-body">
+        <p class="card-text">This website is designed to help you manage and organize the examination supervision at your university.</p>
+        <ul class="list-unstyled">
+          <li>Enter teachers' preferences</li>
+          <li>Enter room capacities</li>
+          <li>Assign teachers to rooms</li>
+          <li>Present teachers' assignments in the form of an excel sheet and a pdf file</li>
+          <li>The possibility to make exchanges between teachers</li>
+          <li>Notify teachers and students before the exam starting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card bg-light text-dark">
+      <div class="card-body">
+        <h5 class="card-title">How to use</h5>
+        <p class="card-text">To use this website, please follow these steps:</p>
+        <ol>
+          <li>Log in to the website using your username and password.</li>
+          <li>Enter the teachers' preferences for the upcoming exams.</li>
+          <li>Enter the room capacities for each exam room.</li>
+          <li>Assign teachers to rooms.</li>
+          <li>Present teachers' assignments in the form of an excel sheet and a pdf file.</li>
+          <li>Make exchanges between teachers if necessary.</li>
+          <li>Notify teachers and students before the exam starting.</li>
+        </ol>
+        <p class="card-text">If you have any questions, please contact the website administrator at <a href="mailto:administrator@example.com">administrator@example.com</a>.</p>
+      </div>
+    </div>
+    <div class="card bg-light text-dark">
+      <div class="card-body">
+        <h5 class="card-title">Contact information</h5>
+        <p class="card-text">Website administrator: <a href="mailto:administrator@example.com">administrator@example.com</a></p>
+      </div>
+    </div>
+  </div>
 
-    
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ calendar.title }}</div>
-
-                    <div class="card-body">
-                        {!! calendar.calendar_html %}
-                    </div>
-                </div>
-            </div>
-        </div>
-      
-  
-  
-
+  <div class="card bg-light text-dark">
+    <div class="card-body">
+      <h5 class="card-title">Latest news</h5>
+      <p class="card-text">Here are some of the latest news about the Examination Supervision Management Website:</p>
+      <ul>
+        <li>The website has been updated with a new feature that allows users to exchange teachers between rooms.</li>
+        <li>The website has been redesigned to make it easier to use.</li>
+        <li>The website is now available in Spanish.</li>
+      </ul>
+      <p class="card-text">For more information on the latest news, please visit the website news page.</p>
+      <a href="news.html">News</a>
+    </div>
+  </div>
 {% endblock content %}
