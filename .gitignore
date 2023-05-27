@@ -44,5 +44,6 @@ University_Ex/university/exam/migrations/__pycache__/__init__.cpython-311.pyc
 University_Ex/university/exam/migrations/0002_remove_exam_start_end_time_and_more.py
 .env
 .gitignore
+db.sqllite3
 
 
