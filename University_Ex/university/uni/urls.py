@@ -22,7 +22,8 @@ urlpatterns = [
     path('teacherS/', teacher_path, name='teacher_path'),
     path('contactUs/', contact_path, name='contact_path'),
     path('assignements/', assi_path, name='assi_path'),
-    path('allTeacher/', all_teacher_time, name = 'all_teacher_time')
+    path('allTeacher/', all_teacher_time, name = 'all_teacher_time'),
+    path('exchange/', exchange, name='exchange'),
 
 
 ]
