@@ -344,12 +344,12 @@ def add_room(request):
 
 def all_teacher_time(request):
     search_time = request.POST.get("search_time")
+
     if not search_time:
-        all_exams = Selected_exam.objects.all()
+        all_exams = Selected_exam.objects.exclude(t_a__teacher_av = request.user)
     else:
-        
-        all_exams = Selected_exam.objects.filter(t_a__time_start__icontains=search_time)
-    
+        all_exams = Selected_exam.objects.filter(t_a__time_start__icontains=search_time).exclude(t_a__teacher_av = request.user)
+
     context = {
         'all_exams': all_exams,
     }
@@ -357,8 +357,35 @@ def all_teacher_time(request):
 
 
 
+def exchange(request):
+    requested_teacher = request.user
+    if request.method == 'POST':
+        all_req = request.POST.getlist('time_request')
+        exam_requested_to = Teacher.objects.filter(id__in=all_req)
+        
+       
+        for teacher in exam_requested_to:
+            check_existing_swap = Exam_Swap_Request.objects.filter(
+                requesting_professor=requested_teacher,
+                responding_professor=teacher,
+                status=True,
+            )
+           
 
+            if not check_existing_swap:
+                Exam_Swap_Request.objects.create(body="exachange!!",
+                    requesting_professor=requested_teacher,
+                    responding_professor=teacher,
+                    status=True,
+                )
 
+    context = {
+        'requested_teacher': requested_teacher,
+    }
+
+    return render(request, 'pages/teacher_request.html', context)
+
+        
 
 
 

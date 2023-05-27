@@ -113,7 +113,7 @@
     </div>
     <div class="container6">
       <h1>Exams</h1>
-      <form method="post" action="">
+      <form method="POST" action="{% url 'exchange' %}">
         {% csrf_token %}
         <table>
           <thead>
@@ -141,7 +141,7 @@
                 <td>{{ exam.e_x.assigned_room.name }}</td>
                 <td>{{ exam.e_x.course_exam.name }}</td>
                 <td> 
-                  <input type="checkbox" name = "time_request" />
+                  <input type="checkbox" name = "time_request" value= "{{ exam.t_a.teacher_av.id }}" />
                 </td>
 
               </tr>

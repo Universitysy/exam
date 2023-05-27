@@ -191,7 +191,7 @@ class Exam_Swap_Request(models.Model):
         related_name='responded_swaps',
         related_query_name='responded_swaps'  # <-- this line to avoid conflict
     )
-    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    
     created_at = models.DateTimeField(default=datetime.now)
 
 
