@@ -8,158 +8,247 @@
 
  
   <head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-QOwB0Fj+QdPvIY2FLb0xSLL6bSNW/7tpx+lgPZpYR3cYUz1r2TUIo8Phf6G3m02Ogs7rvPPlkVpBuxiGB4NGVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container1 .button-group {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .container1 .button-group button {
+      margin-right: 10px;
+    }
+    .container1 {
+      max-width: 1500px;
+      margin: 0 auto;
+      margin-top: 50px;
+      padding-right: 20%;
+      padding-left:  20%;
+      background-color: #ECEFF1; /* Add blue background color */
+      border-radius: 10px; /* Add rounded corners */
+    }
+
+    /* Add styles for the popup */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+    }
+
+    .popup input[type="text"],
+    .popup select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .popup button {
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    h1 {
+      text-align: center;
+      color: #2196F3; /* Change text color to blue */
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #2196F3; /* Change label color to blue */
+    }
+
+    .time-input,
+    .date-input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 2px solid #2196F3; /* Change border color to blue */
+      color: #333333; /* Change text color */
+      font-size: 16px; /* Change font size */
+    }
+  
+    .time-input::placeholder,
+    .date-input::placeholder {
+      color: #999999; /* Change placeholder color */
+    }
+  
+    .time-input:focus,
+    .date-input:focus {
+      outline: none;
+      border-color: #1976D2; /* Change border color on focus */
+    }
+
+      .input-field {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 2px solid #2196F3; /* Change border color to blue */
+        color: #333333; /* Change text color */
+        font-size: 16px; /* Change font size */
+        height: 40px; /* Adjust the height as desired */
+      }
+    
+      .input-field::placeholder {
+        color: #999999; /* Change placeholder color */
+      }
+    
+      .input-field:focus {
+        outline: none;
+        border-color: #1976D2; /* Change border color on focus */
+      }
  
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          background-color: #f5f5f5;
-          margin: 0;
-          padding: 0;
-        }
-      
-        .container1 {
-          max-width: 1500px;
-          margin: 0 auto;
-          margin-top:50px;
-          padding: 20px;
-          background-color: #ECEFF1; /* Add blue background color */
-          border-radius: 10px; /* Add rounded corners */
-        }
-      
-        h1 {
-          text-align: center;
-          color: #2196F3; /* Change text color to blue */
-        }
-      
-        form {
-          background-color: #ffffff;
-          padding: 20px;
-          border-radius: 5px;
-          box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-        }
-      
-        label {
-          display: block;
-          margin-bottom: 10px;
-          color: #2196F3; /* Change label color to blue */
-        }
-      
-        input[type="text"], select {
-          display: block;
-          width: 100%;
-          padding: 10px;
-          border: none;
-          border-radius: 5px;
-          margin-bottom: 20px;
-          box-sizing: border-box;
-          border: 2px solid #2196F3; /* Change border color to blue */
-        }
-      
-        input[type="submit"] {
-          background-color: #2196F3; /* Change button color to blue */
-          color: #ffffff;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-      
-        input[type="submit"]:hover {
-          background-color: #1976D2; /* Change button hover color to a darker shade of blue */
-        }
-      
-        .container6 {
-          max-width: 1500px;
-          margin:  auto;
-          margin-top: 50px;
-          padding: 20px;
-          background-color: #ECEFF1; /* Add blue background color */
-          border-radius: 10px; /* Add rounded corners */
-        }
-      
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-bottom: 20px;
-        }
-      
-        th, td {
-          padding: 10px;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
-        }
-      
-        th {
-          background-color: #2196F3; /* Change table header background color to blue */
-          color: #ffffff;
-        }
-      
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
-        }
-      
-        @media screen and (max-width: 600px) {
-          form {
-            padding: 10px;
-          }
-      
-          input[type="text"], select {
-            margin-bottom: 10px;
-          }
-      
-          table {
-            font-size: 12px;
-          }
-      
-          th, td {
-            padding: 5px;
-          }
-        }
+    .container6 {
+      max-width: 1500px;
+      margin: auto;
+      margin-top: 50px;
+      padding-right: 20%;
+      padding-left:  20%;
+      background-color: #ECEFF1; /* Add blue background color */
+      border-radius: 10px; /* Add rounded corners */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #2196F3; /* Change table header background color to blue */
+      color: #ffffff;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 600px) {
+      form {
+        padding: 10px;
+      }
+
+      input[type="text"],
+      select {
+        margin-bottom: 10px;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 5px;
+      }
+    }
       </style>
       
   
   </head>
-
     <div class="container1">
-      <h1>Add Exam</h1>
-      <form action="" method="POST"> 
-       {% csrf_token %}
-        <label for="start_time">Start time:</label>
-        <input type="time" id="start_time" name="start_time" placeholder="Enter start time">
-
-       
-        <label for="end_time">End time:</label>
-        <input type="time" id="end_time" name="end_time" placeholder="Enter end time">
-  
-        <label for="date">Date:</label>
-        <input type="date" id="date" name="date" placeholder="last name">
-
-
-        <label>Course</label>
-        <select name="course_exam">
-          <option value="null" selected> </option>
-           {% for course in courses %} 
-           <option value = "{{course.name}}"> {{ course.name }} </option>
-
-           {% endfor %}
-        </select>
-
-        <label>Room</label>
-        <select name="assigned_room">
-          <option value="null" selected> </option>
-            {% for room in rooms %} 
-            <option value = "{{room.name}}"> {{ room.name }} </option>
- 
+      <h1>Add Exam</h1> 
+       <div class="button-group">
+          <button type="button" class="btn btn-primary" onclick="showPopup('class')"><i class="fas fa-plus"></i> Add Class</button>
+          <button type="button" class="btn btn-primary" onclick="showPopup('course')"><i class="fas fa-plus"></i> Add Course</button>
+        </div>
+        <form action="" method="POST">
+          {% csrf_token %}
+        
+          <label for="start_time">Start time:</label>
+          <input type="time" id="start_time" name="start_time" placeholder="Enter start time" class="time-input">
+        
+          <label for="end_time">End time:</label>
+          <input type="time" id="end_time" name="end_time" placeholder="Enter end time" class="time-input">
+        
+          <label for="date">Date:</label>
+          <input type="date" id="date" name="date" placeholder="Enter date" class="date-input">
+        
+          <label>Course:</label>
+          <select name="course_exam" class="input-field">
+            <option value="null" selected></option>
+            {% for course in courses %}
+            <option value="{{course.name}}">{{course.name}}</option>
             {% endfor %}
-         </select>
-
- 
-  
-
-        <input type="submit" value="Add Exam">
-      </form>
+          </select>
+        
+          <label>Room:</label>
+          <select name="assigned_room" class="input-field">
+            <option value="null" selected></option>
+            {% for room in rooms %}
+            <option value="{{room.name}}">{{room.name}}</option>
+            {% endfor %}
+          </select>
+          
+          <input type="submit" value="Add Exam">
+        </form>
     </div>
-	<div class="container6">
+  
+    <!-- Popup for adding class -->
+    <div id="classPopup" class="popup">
+      <h2>Add Class</h2>
+      <input type="text" id="className" placeholder="Class Name" name="className">
+      <input type="text" id="classnumber" placeholder="Class Number" name="Class Number">
+      <button onclick="addClass()">Add</button>
+    </div>
+  
+    <!-- Popup for adding course -->
+    <div id="coursePopup" class="popup">
+      <h2>Add Course</h2>
+      <input type="text" id="courseName" placeholder="Course Name" name="courseName">
+      <input type="text" id="classnumber" placeholder="Class Number" name="Class Number">
+      <button onclick="addCourse()">Add</button>
+    </div>
+  
+  
+    <div class="container6">
 		<h1>Exam List</h1>
 		<table>
 			<thead>
@@ -191,8 +280,29 @@
 			</tbody>
 		</table>
 	</div>
+  <!-- JavaScript code for handling popups -->
+  <script>
+    function showPopup(popupId) {
+      const popup = document.getElementById(popupId + 'Popup');
+      popup.style.display = 'block';
+    }
 
-  
+    function addClass() {
+      const className = document.getElementById('className').value;
+      // Perform necessary actions to add the class
+      console.log('Adding class:', className);
+      // Close the popup
+      document.getElementById('classPopup').style.display = 'none';
+    }
+
+    function addCourse() {
+      const courseName = document.getElementById('courseName').value;
+      // Perform necessary actions to add the course
+      console.log('Adding course:', courseName);
+      // Close the popup
+      document.getElementById('coursePopup').style.display = 'none';
+    }
+  </script>
  
 {% endif %}
 {% endblock content %}
