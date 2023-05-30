@@ -383,7 +383,7 @@ def exchange(request):
         'requested_teacher': requested_teacher,
     }
 
-    return render(request, 'pages/teacher_request.html', context)
+    return redirect('all_teacher_time.html')
 
         
 
